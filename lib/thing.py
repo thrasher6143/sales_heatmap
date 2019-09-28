@@ -7,7 +7,8 @@ def run():
     dataframe = pd.read_csv('csvs/data.csv')
     dataframe = dataframe[columns]
     pivot_2017 = dataframe.pivot('Zip Code', 'Month', '2017')
-    sns.heatmap(pivot_2017)
+    f, ax = plt.subplots(figsize=(11, 15))
+    sns.heatmap(pivot_2017, ax = ax)
     # dataframe = dataframe.melt(id_vars=['Zip Code', 'Month'], var_name ='Year', value_name = 'CE_Sales')
     # zip_codes = dataframe['Zip Code'].unique()
 
@@ -15,7 +16,7 @@ def run():
     # print(dataframe)
 
     # sns.set_context("talk")
-    # f, ax = plt.subplots(figsize=(11, 15))
+    #
     # #
     # # ax = sns.heatmap(dataframe, annot=True, fmt="d", linewidths=.5, ax=ax, xticklabels=['Jan', 'Feb', 'Mar'],
     # #                  yticklabels=zip_codes)

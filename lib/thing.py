@@ -8,13 +8,13 @@ def run():
     dataframe = dataframe[columns]
     dataframe = dataframe.fillna(0)
     # pivot_2017 = dataframe.pivot('Zip Code', 'Month', '2017')
-    pivot_2018 = dataframe.pivot('Zip Code', 'Month', '2018')
-    pivot_2018 = pivot_2018.fillna(1).astype(int)
+    # pivot_2018 = dataframe.pivot('Zip Code', 'Month', '2018')
+    # pivot_2018 = pivot_2018.fillna(1).astype(int)
     # pivot_2017 = pivot_2017.round()
 
-    f, ax = plt.subplots(figsize=(15, 20))
+    # f, ax = plt.subplots(figsize=(15, 20))
     # ax = sns.heatmap(pivot_2017)
-    sns.heatmap(pivot_2018, fmt='g', robust=True, annot=True, ax=ax, cmap="Reds", linewidths=.3, xticklabels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+    # sns.heatmap(pivot_2018, fmt='g', robust=True, annot=True, ax=ax, cmap="Reds", linewidths=.3, xticklabels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
     # dataframe = dataframe.melt(id_vars=['Zip Code', 'Month'], var_name ='Year', value_name = 'CE_Sales')
     # zip_codes = dataframe['Zip Code'].unique()
 
@@ -31,4 +31,10 @@ def run():
     # ax.set(xlabel='Day of Week', ylabel='Star
     # ting Hour of Ride');
 
-    plt.savefig('images/2018_heatmap.png')
+    # plt.savefig('images/2018_heatmap.png')
+
+    for year in ['2017', '2018']:
+        data_pivot = dataframe.pivot('Zip Code', 'Month', year)
+        f, ax = plt.subplots(figsize=(15, 20))
+        sns.heatmap(data_pivot, fmt='g', robust=True, annot=True, ax=ax, cmap="Reds", linewidths=.3, xticklabels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+        plt.savefig('images/' + year + 'heatmap.png')
